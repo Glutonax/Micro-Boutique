@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} création{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('index') }}" class="btn btn-secondary m-3">Retour à l'accueil</a>
+    <div class="d-flex flex-column justify-content-around align-items-center mt-3 p-3 w-75 mx-auto">
+        {{form(form)}}
+    </div>
+
+{% endblock %}

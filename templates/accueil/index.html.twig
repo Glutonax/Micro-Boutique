@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Accueil{% endblock %}
+
+{% block body %}
+    <div class="mt-3 p-3 w-75 mx-auto">
+        <div class="d-flex justify-content-center align-items-center">
+            <h1>Eval Symfony</h1>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_admin') }}" class="ms-auto btn btn-warning">Panneau d'administration</a>
+            {% endif %}
+
+            {% if app.user %}
+                <a href="{{ path('app_logout') }}" class="ms-auto"><button class="btn btn-outline-primary">Se déconnecter</button></a>
+            {% else %}
+                <a href="{{ path('login') }}" class="ms-auto"><button class="btn btn-outline-primary">Se connecter</button></a>
+            {% endif %}
+        </div>
+
+        <div class="w-100 mt-3">
+            {#  On boucle jusqu'à afficher tout les produits #}
+            <div class="d-flex flex-wrap justify-content-center">
+                {% for produit in listeProduits %}
+                    <div class="card mb-3 me-2" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <a href="{{ path('app_produit', {'id': produit.id }) }}"><img src="{{ produit.image }}" class="img-fluid rounded-start" alt="..."></a>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="{{ path('app_produit', {'id': produit.id }) }}">{{ produit.nom }}</a></h5>
+                                    <p class="card-text">{{ produit.description }}</p>
+                                    <p class="card-text">prix : <strong>{{ produit.prix }}</strong></p>
+                                    <p class="card-text">quantité disponible : <strong>{{ produit.stock }}</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="w-100 text-center">
+        <p class="text-muted"><strong>Andrew SALERNO</strong></p>
+        <p class="text-muted">CDSI 21-22</p>
+    </div>
+{% endblock %}

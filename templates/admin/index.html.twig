@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<div class="mt-3 p-3 w-75 mx-auto">
+    <div class="d-flex">
+        <a href="{{ path('newProduit') }}" class="btn btn-outline-success me-2">Créer un produit</a>
+        <a href="{{ path('index') }}" class="btn btn-outline-primary">Retour à l'accueil</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Modifer</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produit in listeProduits %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ produit.nom }}</td>
+                <td>{{ produit.description }}</td>
+                <td>{{ produit.stock }}</td>
+                <td>{{ produit.prix }}</td>
+                <td><a href="{{ path('modifyProduit', {'id': produit.id}) }}">Modifier</a></td>
+                <td><a href="{{ path('deleteProduit', {'id': produit.id}) }}" class="text-danger">Supprimer</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

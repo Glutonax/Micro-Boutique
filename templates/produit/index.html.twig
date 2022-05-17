@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} {{ produit.nom }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-column justify-content-around align-items-center mt-3 p-3 w-75 mx-auto bg-light rounder shadow">
+        <a href="{{ path('index') }}" class="align-self-start btn btn-primary">Retour à page d'accueil</a>
+        <h1>{{ produit.nom }}</h1>
+        <img src="{{ produit.image }}" class="img-fluid rounded-start border border-dark" alt="..." style="max-width: 300px;max-height: 200px">
+        <p class="lead">{{ produit.description }}</p>
+        <p><strong>prix : {{ produit.prix }} €</strong></p>
+        <p>quantité : {{ produit.stock }}</p>
+        {% if produit.stock > 0 %}
+            <a href="" class="btn btn-outline-secondary">Acheter</a>
+        {% endif %}
+
+        <a href=""></a>
+    </div>
+
+{% endblock %}
